@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.nina.shopper2.CreateList">
+    <item
+        android:id="@+id/add_list"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Create Shopping List"
+        android:onClick="createList"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_home"
+        android:orderInCategory="1"
+        android:title="@string/action_home"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_create_list"
+        android:orderInCategory="2"
+        android:title="@string/action_create_list"
+        app:showAsAction="never" />
+</menu>
