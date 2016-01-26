@@ -24,12 +24,13 @@
             android:id="@+id/nameTextView"
             android:layout_column="0" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/nameEditText"
-            android:layout_column="1"
+            android:layout_column="2"
             android:width="300dp" />
+
     </TableRow>
 
     <TableRow
@@ -44,12 +45,13 @@
             android:id="@+id/storeTextView"
             android:layout_column="0" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/storeEditText"
-            android:layout_column="1"
+            android:layout_column="2"
             android:width="300dp" />
+
     </TableRow>
 
     <TableRow
@@ -64,11 +66,12 @@
             android:id="@+id/dateTextView"
             android:layout_column="0" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dateEditText"
-            android:layout_column="1"
+            android:layout_column="2"
             android:width="300dp" />
+
     </TableRow>
 </TableLayout>
