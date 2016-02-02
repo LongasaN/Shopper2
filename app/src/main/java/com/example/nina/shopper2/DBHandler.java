@@ -2,6 +2,7 @@ package com.example.nina.shopper2;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -55,5 +56,12 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TABLE_SHOPPING_LIST, null, values);
 
         db.close();
+    }
+
+    public Cursor getShoppingList(){
+
+        // Select everything from the Shopping List Database
+        SQLiteDatabase db = getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_SHOPPING_LIST, null);
     }
 }

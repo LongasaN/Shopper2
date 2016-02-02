@@ -9,17 +9,32 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
 
     Intent intent;
+    DBHandler dbHandler;
+    ShoppingLists shoppingListsAdapter;
+    ListView shopperListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        dbHandler = new DBHandler(this, null);
+        shopperListView = (ListView) this.findViewById(R.id.shopperListView);
+
+        // Initialize ShoppingListAdapter
+        // Calling a method to return the Cursor
+        shoppingListsAdapter = new ShoppingLists(this, dbHandler.getShoppingList(), 0);
+
+        shopperListView.setAdapter(shoppingListsAdapter);
 
     }
 
