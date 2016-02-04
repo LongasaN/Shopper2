@@ -29,9 +29,9 @@ public class ShoppingLists extends CursorAdapter{
                 .setText(cursor.getString(cursor.getColumnIndex("list_name")));
 
         ((TextView) view.findViewById(R.id.textViewStore))
-                .setText(cursor.getString(cursor.getColumnIndex("list_name")));
+                .setText(cursor.getString(cursor.getColumnIndex("list_store")));
 
         ((TextView) view.findViewById(R.id.textViewDate))
-                .setText(cursor.getString(cursor.getColumnIndex("list_name")));
+                .setText(cursor.getString(cursor.getColumnIndex("list_date")));
     }
 }

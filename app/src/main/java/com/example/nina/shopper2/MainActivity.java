@@ -70,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, CreateList.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_create_list :
+                intent = new Intent(this, CreateList.class);
+                startActivity(intent);
+                return true;
             default :
                 return super.onOptionsItemSelected(item);
         }
