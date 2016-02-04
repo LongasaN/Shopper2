@@ -64,4 +64,27 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_SHOPPING_LIST, null);
     }
+
+    public String getShoppingListName (int id){
+        String dbString = "";
+
+        String query = "SELECT * FROM " + TABLE_SHOPPING_LIST +
+                " WHERE " + COLUMN_LIST_ID + " = " + id;
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        Cursor c = db.rawQuery(query, null);
+
+        int numShoppingLists = c.getCount();
+
+        if (numShoppingLists >= 1){
+            c.moveToFirst();
+            if ((c.getString(c.getColumnIndex("list_name")) != null)){
+                dbString = c.getString(c.getColumnIndex("list_name"));
+            }
+        }
+
+        db.close();
+        return dbString;
+    }
 }

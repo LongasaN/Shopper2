@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
         shoppingListsAdapter = new ShoppingLists(this, dbHandler.getShoppingList(), 0);
 
         shopperListView.setAdapter(shoppingListsAdapter);
+
+        // Needs and on Item Click listener to pass called
+        shopperListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // Start up the ViewList Activity Class
+                intent = new Intent(MainActivity.this, ViewList.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+            }
+        });
 
     }
 
