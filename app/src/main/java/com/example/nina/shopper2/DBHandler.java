@@ -88,7 +88,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public String getShoppingListName (int id){
         String dbString = "";
 
-        String query = "SELECT * FROM " + TABLE_SHOPPING_LIST_ITEM +
+        String query = "SELECT * FROM " + TABLE_SHOPPING_LIST+
                 " WHERE " + COLUMN_LIST_ID + " = " + id;
 
         SQLiteDatabase db = getWritableDatabase();
