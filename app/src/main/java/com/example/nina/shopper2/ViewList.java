@@ -1,16 +1,21 @@
 package com.example.nina.shopper2;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class ViewList extends AppCompatActivity {
 
@@ -46,7 +51,47 @@ public class ViewList extends AppCompatActivity {
         itemsListView = (ListView) this.findViewById(R.id.itemListView);
         itemsListView.setAdapter(shoppingListItemsAdapter);
 
-        toolbar.setSubtitle("Total Cost: " + dbHandler.getShoppingListTotalCost((int)id));
+        toolbar.setSubtitle("Total Cost: " + dbHandler.getShoppingListTotalCost((int) id));
+
+        itemsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                updateItem(id);
+                intent = new Intent(ViewList.this, ViewItem.class);
+                intent.putExtra("_id", id);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void updateItem(long id){
+
+        if (dbHandler.isItemPurchased((int)id) != 0){
+            dbHandler.updateItem((int)id);
+            Toast.makeText(this, "Item purchased!", Toast.LENGTH_LONG).show();
+        }
+
+        int count = dbHandler.getUnpurchasedItems((int) this.id);
+
+        // Validate if the user purchased all items in the shopping list
+        if (count == 0){
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+            builder.setSmallIcon(R.mipmap.ic_launcher);
+            builder.setContentTitle("Shopper");
+            builder.setContentText(shoppingListName + " completed!");
+
+            intent = new Intent(this, ViewList.class);
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+
+            builder.setContentIntent(pendingIntent);
+
+            NotificationManager notificationManager = (NotificationManager)
+                    getSystemService(NOTIFICATION_SERVICE);
+
+            notificationManager.notify(2142, builder.build());
+        }
     }
 
     public void openAddItem(View view){
