@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ViewItem extends AppCompatActivity {
 
@@ -48,11 +49,6 @@ public class ViewItem extends AppCompatActivity {
 
     }
 
-
-    public void deleteShoppingListItem(MenuItem menuItem){
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -80,6 +76,14 @@ public class ViewItem extends AppCompatActivity {
             default :
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void deleteShoppingListItem(MenuItem menuItem){
+
+        dbHandler.deleteShoppingListItem((int) id);
+
+        Toast.makeText(this, "Item deleted!", Toast.LENGTH_LONG).show();
+
     }
 
 }

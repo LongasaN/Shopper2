@@ -102,10 +102,6 @@ public class ViewList extends AppCompatActivity {
 
     }
 
-    public void deleteShoppingList(MenuItem menuItem){
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -133,5 +129,12 @@ public class ViewList extends AppCompatActivity {
             default :
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void deleteShoppingList(MenuItem menuItem){
+
+        dbHandler.deleteShoppingList((int) id);
+
+        Toast.makeText(this, "Shopping List deleted!", Toast.LENGTH_SHORT).show();
     }
 }
